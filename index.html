@@ -3,14 +3,27 @@
 <head>
   <title>Realtime Video Calling Application</title>
   <link rel="stylesheet" href="/css/master.css">
-
 </head>
 
 <body>
   <h1>Welcome to realtime video web communication!</h1>
-  <video autoplay playsinline ></video>
-  <script src="main/js/main.js"></script>
 
+  <!-- video autoplay playsinline -->
+  <video id="localVideo" autoplay playsinline ></video>
+  <video id="remoteVideo" autoplay playsinline></video>
+
+  <!-- control buttons -->
+  <div class="controlButtons">
+    <button id="startButton">Start</button>
+    <button id="callButton">Call</button>
+    <button id="hangupButton">Hang Up</button>
+  </div>
+
+  <!-- adapter.js is a shim to insulate apps from spec changes and prefix differences -->
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+  <!-- main JavaScript file -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>
