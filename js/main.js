@@ -78,6 +78,32 @@ remoteVideo.addEventListener('loadedmetadata', logVideoLoaded);
 remoteVideo.addEventListener('onresize', logResizedVideo);
 
 
+// Define RTC-peer-connection behavior
+
+// connect with new peer candidate
+function handleConnection(event){
+  const peerConnection = event.target;
+  const iceCandidate = event.candidate;
+
+  if (iceCandidate){
+    const newIceCandidate = new RTCIceCandidate(iceCandidate);
+    const otherPeer = getOtherPeer(peerConnection);
+
+    otherPeer.addIceCandidate(newIceCandidate)
+    .then(() => {handleConnectionSuccess(peerConnection);})
+    .catch((error) => {handleConnectionFailure(peerConnection, error);});
+
+    trace(`${getPeerName(peerConnection)} ICE candidate:\n` +
+          `${event.candidate.candidate}.`);    
+  }
+}
+
+
+
+
+
+
+
 
 
 // browser requests cam permission and if granted, initialize the media stream function
